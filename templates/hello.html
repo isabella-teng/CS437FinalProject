@@ -5,6 +5,9 @@
     <title>Flask React</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- styles -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
   <body>
     <div class="container">
@@ -12,6 +15,14 @@
       <br>
       <div id="content"></div>
     </div>
-    <!-- scripts -->
+    <ul id="sortable">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li>
+    </ul>
+  <!-- scripts -->
+  <script>$("#sortable").sortable();</script>
   </body>
 </html>
