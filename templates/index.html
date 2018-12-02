@@ -79,7 +79,7 @@
         <a class="btn btn-secondary" href="#" role="button">Database Design</a>
       </p>
     </div>
-    
+
     <!-- Table Sorter -->
     <a id="sortings">
       <div style="padding-left: 30px; float:left;">
@@ -91,11 +91,11 @@
               <p class="text-success"> Rank these songs from most to least favorite.</p>
             </p>
             <ul id="sortable">
-              <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 1</li>
-              <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 2</li>
-              <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 3</li>
-              <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 4</li>
-              <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 5</li>
+              <li id="artist1" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 1</li>
+              <li id="artist2" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 2</li>
+              <li id="artist3" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 3</li>
+              <li id="artist4" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 4</li>
+              <li id="artist5" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 5</li>
             </ul>
           </div>
         </div>
@@ -141,11 +141,21 @@
       </div>
       <div>
     <div style="align-items: center; padding: 100px;">
-      <button type="button" class="btn btn-primary btn-lg btn-block">See Your Recommendations</button>
+      <button id="submitButton" type="button" class="btn btn-primary btn-lg btn-block" onclick="getRankings()">See Your Recommendations</button>
     </div>
   </a>
   <!-- scripts -->
-  <script>$("#sortable").sortable();</script>
+  <script>
+    function getRankings() {
+      var sortedIDs = $( "#sortable" ).sortable( "toArray" );
+      for (var i = 1; i <= sortedIDs.length; i++) { //TODO: send data to backend, fetch the recommended songs
+        console.log("rank " + i + ": " + sortedIDs[i-1]);
+      }
+    }
+    function addfunc(){
+      document.getElementById("submitButton").onclick = getRankings;
+    }
+  </script>
 
   <!-- Bootstrap core JavaScript -->
   <script src="./vendor/jquery/jquery.min.js"></script>

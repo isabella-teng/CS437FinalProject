@@ -23,8 +23,8 @@ def query_db(query, args=(), one=False):
 @app.route('/')
 def index():
 	# Example of how to query in the database, delete later
-	for artist in query_db('SELECT * from artist'):
-		print "the artists are:", artist[1]
+	# for artist in query_db('SELECT * from artist'):
+		# print("the artists are:", artist[1])
 	return render_template('index.html')
 
 
