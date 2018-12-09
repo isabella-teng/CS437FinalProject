@@ -23,10 +23,10 @@ def query_db(query, args=(), one=False):
 @app.route('/')
 def index():
 	# Example of how to query in the database, delete later
-	# for artist in query_db('SELECT * from artist'):
+	# for artist in query_db('SELECT * from artist') :
 		# print("the artists are:", artist[1])
-	return render_template('index.html')
-
+        table_data = query_db('SELECT * from artist')
+        return render_template('index.html', data=table_data) #TODO: we only want hottest 100
 
 @app.route('/hello')
 def hello():

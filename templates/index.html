@@ -84,24 +84,19 @@
     <a id="sortings">
       <div style="padding-left: 30px; float:left;">
         <div class="card border-warning mb-3" style="max-width: 25rem;">
-          <div class="card-header">Selected Songs</div>
+          <div class="card-header">Selected Artists</div>
           <div class="card-body">
-            <h4 class="card-title">Sort a few songs</h4>
+            <h4 class="card-title">Sort a few artists</h4>
             <p class="card-text">
-              <p class="text-success"> Rank these songs from most to least favorite.</p>
+              <p class="text-success"> Rank these HOT artists from most to least favorite.</p>
             </p>
-            <ul id="sortable">
-              <li id="artist1" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 1</li>
-              <li id="artist2" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 2</li>
-              <li id="artist3" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 3</li>
-              <li id="artist4" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 4</li>
-              <li id="artist5" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Song 5</li>
+            <ul id="sortable" class="artistsList">
             </ul>
           </div>
         </div>
        </div>
       </div>
-      <div style="padding-left: 30px; float:left;">
+      <!-- <div style="padding-left: 30px; float:left;">
         <div class="card border-warning mb-3" style="max-width: 25rem;">
           <div class="card-header">Selected Artists</div>
           <div class="card-body">
@@ -118,9 +113,9 @@
             </ul>
           </div>
         </div>
-       </div>
+       </div> -->
       </div>
-      <div style="padding-left: 30px; float:left;">
+      <!-- <div style="padding-left: 30px; float:left;">
         <div class="card border-warning mb-3" style="max-width: 25rem;">
           <div class="card-header">Selected Genres</div>
           <div class="card-body">
@@ -137,7 +132,7 @@
             </ul>
           </div>
         </div>
-       </div>
+       </div> -->
       </div>
       <div>
     <div style="align-items: center; padding: 100px;">
@@ -146,6 +141,21 @@
   </a>
   <!-- scripts -->
   <script>
+
+    $(document).ready(function(){
+      var fiveArtists = getRandomArtists();
+      for (var i = 0; i < 5; i++) {
+        $(".artistsList").append('<li id=' + fiveArtists[i] + ' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + fiveArtists[i] + '</li>');
+      }
+    });
+
+    function getRandomNumber() {
+      var minNumber = 0; // The minimum number you want
+      var maxNumber = 100; // The maximum number you want
+      var randomNumber = Math.floor(Math.random() * (maxNumber + 1) + minNumber); // Generates random number
+      return randomNumber;
+    }
+
     function getRankings() {
       var sortedIDs = $( "#sortable" ).sortable( "toArray" );
       for (var i = 1; i <= sortedIDs.length; i++) { //TODO: send data to backend, fetch the recommended songs
@@ -154,6 +164,15 @@
     }
     function addfunc(){
       document.getElementById("submitButton").onclick = getRankings;
+    }
+
+    function getRandomArtists() {
+      var artists = {{ data | tojson }};
+      var fiveRandom = [];
+      for (var i = 0; i < 5; i++) {
+        fiveRandom.push(artists[getRandomNumber()][1]);
+      }
+      return fiveRandom;
     }
   </script>
 
