@@ -142,10 +142,11 @@
   <!-- scripts -->
   <script>
 
+    var fiveArtists;
     $(document).ready(function(){
-      var fiveArtists = getRandomArtists();
+      fiveArtists = getRandomArtists();
       for (var i = 0; i < 5; i++) {
-        $(".artistsList").append('<li id=' + fiveArtists[i] + ' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + fiveArtists[i] + '</li>');
+        $(".artistsList").append('<li id=' + i + ' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + fiveArtists[i] + '</li>');
       }
     });
 
@@ -157,10 +158,15 @@
     }
 
     function getRankings() {
-      var sortedIDs = $( "#sortable" ).sortable( "toArray" );
-      for (var i = 1; i <= sortedIDs.length; i++) { //TODO: send data to backend, fetch the recommended songs
-        console.log("rank " + i + ": " + sortedIDs[i-1]);
+      var sortedIDs = $( "#sortable" ).sortable( "toArray", {attribute: 'id'});
+      console.log(sortedIDs);
+
+      var retSortedArtists = [];
+      for (var i = 0; i < 5; i++) {
+        retSortedArtists.push(fiveArtists[parseInt(sortedIDs[i])]);
       }
+
+      console.log(retSortedArtists); //TODO: send this ranked array to the backend
     }
     function addfunc(){
       document.getElementById("submitButton").onclick = getRankings;
