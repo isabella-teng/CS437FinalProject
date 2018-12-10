@@ -16,7 +16,6 @@
     <!-- Custom styles for this template -->
     <!-- <link href="/css/mintytheme" rel="stylesheet"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='minty.css') }}" />
-
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -159,14 +158,20 @@
 
     function getRankings() {
       var sortedIDs = $( "#sortable" ).sortable( "toArray", {attribute: 'id'});
-      console.log(sortedIDs);
-
       var retSortedArtists = [];
       for (var i = 0; i < 5; i++) {
         retSortedArtists.push(fiveArtists[parseInt(sortedIDs[i])]);
       }
 
-      console.log(retSortedArtists); //TODO: send this ranked array to the backend
+      data = JSON.stringify(retSortedArtists);
+      // console.log(data);
+      $.ajax({
+        url: '/receivedSortings',
+        type: 'POST',
+        data: data,
+        contentType: 'application/json;charset=UTF-8',
+        cache:false,
+      });
     }
     function addfunc(){
       document.getElementById("submitButton").onclick = getRankings;
