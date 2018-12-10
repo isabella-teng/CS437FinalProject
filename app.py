@@ -32,9 +32,9 @@ def index():
 def fetchPlaylist():
     if request.method == 'POST':
         data = request.json
-
-        for artist in data:
-            print("query the songs for artist id: " + artist)
+        
+        for artist_id in data:
+            print("query the songs for artist id: " + str(artist_id))
 
     return render_template('hello.html') #TODO replace with html file for the returned playlist page
 

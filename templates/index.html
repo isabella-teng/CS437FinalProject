@@ -145,7 +145,7 @@
     $(document).ready(function(){
       fiveArtists = getRandomArtists();
       for (var i = 0; i < 5; i++) {
-        $(".artistsList").append('<li id=' + i + ' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + fiveArtists[i] + '</li>');
+        $(".artistsList").append('<li id=' + i + ' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + fiveArtists[i][1] + '</li>');
       }
     });
 
@@ -160,11 +160,12 @@
       var sortedIDs = $( "#sortable" ).sortable( "toArray", {attribute: 'id'});
       var retSortedArtists = [];
       for (var i = 0; i < 5; i++) {
-        retSortedArtists.push(fiveArtists[parseInt(sortedIDs[i])]);
+        retSortedArtists.push(fiveArtists[parseInt(sortedIDs[i])][0]);
       }
 
       data = JSON.stringify(retSortedArtists);
       // console.log(data);
+      var randArtist =
       $.ajax({
         url: '/receivedSortings',
         type: 'POST',
@@ -181,7 +182,8 @@
       var artists = {{ data | tojson }};
       var fiveRandom = [];
       for (var i = 0; i < 5; i++) {
-        fiveRandom.push(artists[getRandomNumber()][1]);
+        var randArtist = artists[getRandomNumber()];
+        fiveRandom.push([randArtist[0], randArtist[1]]);
       }
       return fiveRandom;
     }
