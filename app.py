@@ -143,7 +143,7 @@ def playlistAlgorithm(artists):
         playlist.append(random.choice(similar_artist_query[0]))
 
     playlist_wo_duplicates = list(set(playlist))
-    # print(playlist_wo_duplicates)
+    print(playlist_wo_duplicates)
     return playlist_wo_duplicates
 
 
