@@ -68,8 +68,8 @@
 
     <!-- Header Container -->
     <div class="jumbotron">
-      <h1 class="display-4">bomb af Song Recommender u aint ready</h1>
-      <p class="lead">hey alexa play closer by chainsmokers</p>
+      <h1 class="display-4">Song Recommender</h1>
+      <p class="lead">Subtitle</p>
       <hr class="my-4">
       <p>Discover your next favorite songs right here, right now.</p>
       <p class="lead">
@@ -160,12 +160,11 @@
       var sortedIDs = $( "#sortable" ).sortable( "toArray", {attribute: 'id'});
       var retSortedArtists = [];
       for (var i = 0; i < 5; i++) {
-        retSortedArtists.push(fiveArtists[parseInt(sortedIDs[i])][0]);
+        retSortedArtists.push(fiveArtists[parseInt(sortedIDs[i])]);
       }
 
       data = JSON.stringify(retSortedArtists);
-      // console.log(data);
-      var randArtist =
+      console.log(data);
       $.ajax({
         url: '/receivedSortings',
         type: 'POST',
@@ -180,10 +179,10 @@
 
     function getRandomArtists() {
       var artists = {{ data | tojson }};
+      // console.log(artists)
       var fiveRandom = [];
       for (var i = 0; i < 5; i++) {
-        var randArtist = artists[getRandomNumber()];
-        fiveRandom.push([randArtist[0], randArtist[1]]);
+        fiveRandom.push(artists[getRandomNumber()]);
       }
       return fiveRandom;
     }
