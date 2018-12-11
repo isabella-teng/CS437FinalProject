@@ -163,7 +163,6 @@
       }
 
       artistData = JSON.stringify(retSortedArtists);
-      // console.log(data);
       $.ajax({
         url: '/receivedSortings',
         type: 'POST',
@@ -173,16 +172,16 @@
       })
       .done(function(data) {
         console.log("Playlist Ready!");
-        document.write(data); //TODO: create new html object and update. https://www.w3schools.com/jsref/met_node_appendchild.asp
+        document.write(data);
       });
     }
+
     function addfunc(){
       document.getElementById("submitButton").onclick = getRankings;
     }
 
     function getRandomArtists() {
       var artists = {{ data | tojson }};
-      // console.log(artists)
       var fiveRandom = [];
       for (var i = 0; i < 5; i++) {
         fiveRandom.push(artists[getRandomNumber()]);

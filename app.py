@@ -165,14 +165,12 @@ def fetchPlaylist():
             songName = query_db('SELECT title from song where id=(?)', (songID,))
             playlistSongs.append(songName[0][0])
         # print(playlistSongs)
-    return redirect(url_for("returnPlaylist"))
+    return returnPlaylist(playlistSongs)
 
 @app.route('/results')
-def returnPlaylist():
-    if request.method == 'GET':
-        print("here?")
-        test = "test str"
-    return render_template('recommendations.html')
+def returnPlaylist(songs):
+    return render_template('recommendations.html', songs=songs)
+
 
 
 if __name__ == '__main__':
