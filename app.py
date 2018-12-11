@@ -30,7 +30,7 @@ def playlistAlgorithm(artists):
     # input - lst, list of 5 sorted artist ids (1 being favorite, 5 being least favorite)
     playlist = []
     artist1 = artists[0]
-    print(artist1)
+    # print(artist1)
     artist2 = artists[1]
     artist3 = artists[2]
     artist4 = artists[3]
@@ -40,7 +40,7 @@ def playlistAlgorithm(artists):
     similar_artists_id_1 = []
     i = 0
     similar_artists_1 = query_db('select * from artist where id in (select artist2_id from similar_to where artist1_id = (?)) ORDER BY familiarity DESC', (artist1,))
-    print(similar_artists_1)
+    # print(similar_artists_1)
     if len(similar_artists_1) >= 10:
         for row in similar_artists_1[0:10]:
             similar_artists_id_1.append(row[0]) # row[0] = 'id'
@@ -143,14 +143,15 @@ def playlistAlgorithm(artists):
         playlist.append(random.choice(similar_artist_query[0]))
 
     playlist_wo_duplicates = list(set(playlist))
-    print(playlist_wo_duplicates)
+    # print(playlist_wo_duplicates)
     return playlist_wo_duplicates
 
 
 @app.route('/')
 def index():
-    table_data = query_db('SELECT * from artist')
-    return render_template('index.html', data=table_data) #TODO: we only want hottest 100
+    table_data = query_db('SELECT * from artist ORDER BY hotness DESC LIMIT 100')
+    # print(table_data)
+    return render_template('index.html', data=table_data)
 
 @app.route('/receivedSortings', methods = ['POST'])
 def fetchPlaylist():
