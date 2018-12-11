@@ -149,6 +149,7 @@ def playlistAlgorithm(artists):
 @app.route('/')
 def index():
     table_data = query_db('SELECT * from artist ORDER BY hotness DESC LIMIT 100')
+    print(table_data)
     return render_template('index.html', data=table_data)
 
 
