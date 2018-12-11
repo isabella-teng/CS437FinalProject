@@ -170,9 +170,11 @@
         data: artistData,
         contentType: 'application/json;charset=UTF-8',
         cache:false,
-      }).done(function(data) {
+      })
+      .done(function(data) {
         // alert("Playlist Ready!");
-        console.log(JSON.parse(data));
+        console.log("Playlist Ready!");
+        console.log(JSON.parse(JSON.stringify(data)));
       });
     }
     function addfunc(){

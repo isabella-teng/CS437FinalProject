@@ -1,6 +1,6 @@
 import sqlite3
 from flask import g
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import os
 import random
 app = Flask(__name__)
@@ -151,6 +151,7 @@ def index():
     table_data = query_db('SELECT * from artist ORDER BY hotness DESC LIMIT 100')
     return render_template('index.html', data=table_data)
 
+
 @app.route('/receivedSortings', methods = ['GET','POST'])
 def fetchPlaylist():
     if request.method == 'POST':
@@ -164,7 +165,15 @@ def fetchPlaylist():
             songName = query_db('SELECT title from song where id=(?)', (songID,))
             playlistSongs.append(songName[0][0])
         # print(playlistSongs)
-        return render_template('index.html', data=playlistSongs)
+        return redirect(url_for("returnPlaylist"))
+
+@app.route('/results')
+def returnPlaylist():
+    if request.method == 'GET':
+        print("here?")
+        return render_template('recommendations.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
