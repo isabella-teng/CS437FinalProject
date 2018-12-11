@@ -56,7 +56,9 @@ def playlistAlgorithm(artists):
 
     for s in similar_artists_id_1:
         similar_artist_query = query_db('select * from sings where artist_id = (?)', (s,))
-        playlist.append(random.choice(similar_artist_query[0])) # 'track_id'
+        playlist.append(random.choice(similar_artist_query)[0]) # 'track_id'
+
+    print(playlist)
 
     # ARTIST 2:
     similar_artists_id_2 = []
@@ -77,7 +79,7 @@ def playlistAlgorithm(artists):
 
     for s in similar_artists_id_2:
         similar_artist_query = query_db('select * from sings where artist_id = (?)', (s,))
-        playlist.append(random.choice(similar_artist_query[0]))
+        playlist.append(random.choice(similar_artist_query)[0])
 
     # ARTIST 3:
     similar_artists_id_3 = []
@@ -98,7 +100,7 @@ def playlistAlgorithm(artists):
 
     for s in similar_artists_id_3:
         similar_artist_query = query_db('select * from sings where artist_id = (?)', (s,))
-        playlist.append(random.choice(similar_artist_query[0]))
+        playlist.append(random.choice(similar_artist_query)[0])
 
     # ARTIST 4:
     similar_artists_id_4 = []
@@ -119,7 +121,7 @@ def playlistAlgorithm(artists):
 
     for s in similar_artists_id_4:
         similar_artist_query = query_db('select * from sings where artist_id = (?)', (s,))
-        playlist.append(random.choice(similar_artist_query[0]))
+        playlist.append(random.choice(similar_artist_query)[0])
 
     # ARTIST 5:
     similar_artists_id_5 = []
@@ -140,17 +142,16 @@ def playlistAlgorithm(artists):
 
     for s in similar_artists_id_5:
         similar_artist_query = query_db('select * from sings where artist_id = (?)', (s,))
-        playlist.append(random.choice(similar_artist_query[0]))
+        playlist.append(random.choice(similar_artist_query)[0])
 
     playlist_wo_duplicates = list(set(playlist))
-    print(playlist_wo_duplicates)
+    # print(playlist_wo_duplicates)
     return playlist_wo_duplicates
 
 
 @app.route('/')
 def index():
     table_data = query_db('SELECT * from artist ORDER BY hotness DESC LIMIT 100')
-    # print(table_data)
     return render_template('index.html', data=table_data)
 
 @app.route('/receivedSortings', methods = ['POST'])
@@ -161,6 +162,7 @@ def fetchPlaylist():
         for ranking in rankings:
             rankingsID.append(ranking[0])
         playlist = playlistAlgorithm(rankingsID)
+        # print(playlist)
         #TODO: uncomment once the playlist bug is fixed
         # playlistSongs = []
         # for songID in playlist:
