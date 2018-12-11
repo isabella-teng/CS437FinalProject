@@ -144,7 +144,7 @@
     $(document).ready(function(){
       fiveArtists = getRandomArtists();
       for (var i = 0; i < 5; i++) {
-        $(".artistsList").append('<li id=' + i + ' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + fiveArtists[i] + '</li>');
+        $(".artistsList").append('<li id=' + i + ' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + fiveArtists[i][1] + '</li>');
       }
     });
 
@@ -183,11 +183,8 @@
     function getRandomArtists() {
       var artists = {{ data | tojson }};
       var fiveRandom = [];
-      while (fiveRandom.length != 5) {
-        var candidate = artists[getRandomNumber()][1];
-        if (!fiveRandom.includes(candidate)) {
-          fiveRandom.push(candidate);
-        }
+      for (var i = 0; i < 5; i++) {
+        fiveRandom.push(artists[getRandomNumber()]);
       }
       return fiveRandom;
     }

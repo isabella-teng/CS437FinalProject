@@ -149,7 +149,6 @@ def playlistAlgorithm(artists):
 @app.route('/')
 def index():
     table_data = query_db('SELECT * from artist ORDER BY hotness DESC LIMIT 100')
-    print(table_data)
     return render_template('index.html', data=table_data)
 
 
@@ -165,11 +164,12 @@ def fetchPlaylist():
         for songID in playlist:
             songName = query_db('SELECT title from song where id=(?)', (songID,))
             playlistSongs.append(songName[0][0])
-        # print(playlistSongs)
+        print(playlistSongs)
     return returnPlaylist(playlistSongs)
 
 @app.route('/results')
 def returnPlaylist(songs):
+    print("here")
     return render_template('recommendations.html', songs=songs)
 
 
