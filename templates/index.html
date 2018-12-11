@@ -172,9 +172,8 @@
         cache:false,
       })
       .done(function(data) {
-        // alert("Playlist Ready!");
         console.log("Playlist Ready!");
-        console.log(JSON.parse(JSON.stringify(data)));
+        document.write(data); //TODO: create new html object and update. https://www.w3schools.com/jsref/met_node_appendchild.asp
       });
     }
     function addfunc(){
