@@ -161,8 +161,13 @@ def fetchPlaylist():
         for ranking in rankings:
             rankingsID.append(ranking[0])
         playlist = playlistAlgorithm(rankingsID)
+        #TODO: uncomment once the playlist bug is fixed
+        # playlistSongs = []
+        # for songID in playlist:
+        #     songName = query_db('SELECT title from song where id=(?)', (songID,))
+        #     playlistSongs.append(songName)
     return render_template('hello.html') #TODO replace with html file for the returned playlist page
-
+    # return render_template('index.html', playlist=playlistSongs)
 
 if __name__ == '__main__':
     app.run(debug=True)
