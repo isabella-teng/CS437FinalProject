@@ -180,11 +180,18 @@
       document.getElementById("submitButton").onclick = getRankings;
     }
 
+
+
     function getRandomArtists() {
       var artists = {{ data | tojson }};
       var fiveRandom = [];
-      for (var i = 0; i < 5; i++) {
-        fiveRandom.push(artists[getRandomNumber()]);
+      var duplicates = []
+      while (fiveRandom.length != 5) {
+        var candidate = artists[getRandomNumber()];
+        if (!duplicates.includes(candidate[1])) {
+          fiveRandom.push(candidate);
+          duplicates.push(candidate[1])
+        }
       }
       return fiveRandom;
     }
