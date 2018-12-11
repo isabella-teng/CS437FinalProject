@@ -58,8 +58,6 @@ def playlistAlgorithm(artists):
         similar_artist_query = query_db('select * from sings where artist_id = (?)', (s,))
         playlist.append(random.choice(similar_artist_query)[0]) # 'track_id'
 
-    print(playlist)
-
     # ARTIST 2:
     similar_artists_id_2 = []
     i = 0
@@ -145,7 +143,6 @@ def playlistAlgorithm(artists):
         playlist.append(random.choice(similar_artist_query)[0])
 
     playlist_wo_duplicates = list(set(playlist))
-    # print(playlist_wo_duplicates)
     return playlist_wo_duplicates
 
 
@@ -154,7 +151,7 @@ def index():
     table_data = query_db('SELECT * from artist ORDER BY hotness DESC LIMIT 100')
     return render_template('index.html', data=table_data)
 
-@app.route('/receivedSortings', methods = ['POST'])
+@app.route('/receivedSortings', methods = ['GET','POST'])
 def fetchPlaylist():
     if request.method == 'POST':
         rankings = request.json
@@ -162,14 +159,12 @@ def fetchPlaylist():
         for ranking in rankings:
             rankingsID.append(ranking[0])
         playlist = playlistAlgorithm(rankingsID)
-        # print(playlist)
-        #TODO: uncomment once the playlist bug is fixed
-        # playlistSongs = []
-        # for songID in playlist:
-        #     songName = query_db('SELECT title from song where id=(?)', (songID,))
-        #     playlistSongs.append(songName)
-    return render_template('hello.html') #TODO replace with html file for the returned playlist page
-    # return render_template('index.html', playlist=playlistSongs)
+        playlistSongs = []
+        for songID in playlist:
+            songName = query_db('SELECT title from song where id=(?)', (songID,))
+            playlistSongs.append(songName[0][0])
+        # print(playlistSongs)
+        return render_template('index.html', data=playlistSongs)
 
 if __name__ == '__main__':
     app.run(debug=True)

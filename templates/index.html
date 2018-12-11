@@ -140,7 +140,6 @@
   </a>
   <!-- scripts -->
   <script>
-
     var fiveArtists;
     $(document).ready(function(){
       fiveArtists = getRandomArtists();
@@ -163,14 +162,17 @@
         retSortedArtists.push(fiveArtists[parseInt(sortedIDs[i])]);
       }
 
-      data = JSON.stringify(retSortedArtists);
-      console.log(data);
+      artistData = JSON.stringify(retSortedArtists);
+      // console.log(data);
       $.ajax({
         url: '/receivedSortings',
         type: 'POST',
-        data: data,
+        data: artistData,
         contentType: 'application/json;charset=UTF-8',
         cache:false,
+      }).done(function(playlist) {
+        // alert("Playlist Ready!");
+        console.log({{ playlist }});
       });
     }
     function addfunc(){
