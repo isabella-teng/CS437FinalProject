@@ -47,13 +47,13 @@
             <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Database Design</a>
+            <a class="nav-link" href="{{ url_for('databaseDesign') }}">Database Design</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Algorithm</a>
+            <a class="nav-link" href="{{ url_for('algorithmDesign') }}">Algorithm</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{{ url_for('about') }}">About</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -64,6 +64,7 @@
     </nav>
 
     <!-- Table of Recommended Songs -->
+    <!-- Source: Built by Tim Ivey - https://codepen.io/timivey/pen/jEXxZY -->
     <a id="sortings">
       <div style="padding-left: 50px; padding-top: 30px; display: inline-block;">
         <div class="card border-warning mb-3" style="max-width: 25rem;">
@@ -94,7 +95,7 @@
       <div class="card border-warning mb-3" style="max-width: 100rem;">
         <div class="card-header">Search up some recommended songs!</div>
         <div class="card-body">
-          <div id="container">
+          <div id="container" style="width: 650px;">
             <header>
                 <h1><span>YouTube</span></h1>
             </header>
@@ -102,7 +103,7 @@
                 <form id="search-form" name="search-form" target="_blank" onsubmit="search()">
                     <div class="fieldcontainer">
                         <input type="search" id="query" class="search-field" placeholder="Search YouTube">
-                        <input type="submit" name="search-btn" id="search-btn" value="">
+                        <input type="button" name="search-btn" id="search-btn" value="">
                     </div>
                 </form>
 
@@ -123,7 +124,7 @@
 
       // call fancybox pluggin (note: linked in in codepen js settings)
       $(".fancyboxIframe").fancybox({
-          maxWidth	: 900,
+          maxWidth	: 600,
           maxHeight	: 600,
           fitToView	: false,
           width		: '90%',

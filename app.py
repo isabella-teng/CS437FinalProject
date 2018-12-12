@@ -30,7 +30,6 @@ def playlistAlgorithm(artists):
     # input - lst, list of 5 sorted artist ids (1 being favorite, 5 being least favorite)
     playlist = []
     artist1 = artists[0]
-    # print(artist1)
     artist2 = artists[1]
     artist3 = artists[2]
     artist4 = artists[3]
@@ -40,7 +39,6 @@ def playlistAlgorithm(artists):
     similar_artists_id_1 = []
     i = 0
     similar_artists_1 = query_db('select * from artist where id in (select artist2_id from similar_to where artist1_id = (?)) ORDER BY familiarity DESC', (artist1,))
-    # print(similar_artists_1)
     if len(similar_artists_1) >= 10:
         for row in similar_artists_1[0:10]:
             similar_artists_id_1.append(row[0]) # row[0] = 'id'
@@ -170,6 +168,17 @@ def fetchPlaylist():
 def returnPlaylist(songs):
     return render_template('recommendations.html', songs=songs)
 
+@app.route('/design', methods = ['GET'])
+def databaseDesign():
+    return render_template('databasedesign.html')
+
+@app.route('/algorithm', methods = ['GET'])
+def algorithmDesign():
+    return render_template('algorithmdesign.html')
+
+@app.route('/about', methods = ['GET'])
+def about():
+    return render_template('about.html')
 
 
 if __name__ == '__main__':

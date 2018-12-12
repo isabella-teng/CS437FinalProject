@@ -47,13 +47,13 @@
             <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Database Design</a>
+            <a class="nav-link" href="{{ url_for('databaseDesign') }}">Database Design</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Algorithm</a>
+            <a class="nav-link" href="{{ url_for('algorithmDesign') }}">Algorithm</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{{ url_for('about') }}">About</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -70,8 +70,8 @@
       <hr class="my-4">
       <p class="lead">
         <a class="btn btn-success" href="#sortings" role="button">Let's Get Started</a>
-        <a class="btn btn-secondary" href="#" role="button">Database Design</a>
-        <a class="btn btn-secondary" href="#" role="button">Algorithm</a>
+        <a class="btn btn-secondary" href="{{ url_for('databaseDesign') }}" role="button">Database Design</a>
+        <a class="btn btn-secondary" href="{{ url_for('algorithmDesign') }}" role="button">Algorithm</a>
       </p>
     </div>
 
@@ -136,7 +136,6 @@
     function addfunc(){
       document.getElementById("submitButton").onclick = getRankings;
     }
-
 
 
     function getRandomArtists() {
