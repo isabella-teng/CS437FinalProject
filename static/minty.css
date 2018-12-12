@@ -82,7 +82,7 @@ body {
     font-family: "Segoue", sans-serif;
     line-height: 1.6em;
     color: #666;
-    background: #e1e1e1 url('http://timivey.com/external/codepen/youtube-search-engine/images/creampaper.png');
+    background: #000000 url('http://timivey.com/external/codepen/youtube-search-engine/images/creampaper.png');
     font-size: 14px;
 }
 
@@ -112,7 +112,7 @@ header h1 {
 }
 
 header span {
-    color: #dd2826;
+    color: #000000;
 }
 
 section {

@@ -65,7 +65,7 @@
 
     <!-- Table of Recommended Songs -->
     <a id="sortings">
-      <div style="padding-left: 50px; padding-top: 30px;">
+      <div style="padding-left: 50px; padding-top: 30px; display: inline-block;">
         <div class="card border-warning mb-3" style="max-width: 25rem;">
           <div class="card-header">Recommended Songs</div>
           <div class="card-body">
@@ -79,46 +79,41 @@
         	</ul>
             </ul>
           </div>
+          <div style="padding-bottom: 30px; padding-left: 50px; width: 350px;">
+	      <a href={{ url_for('index') }}>
+		      <button id="submitButton" type="button" class="btn btn-secondary btn-lg btn-block">
+		      		Recommend More Songs
+		      </button>
+	 	    </a>
+	    </div>
         </div>
        </div>
       </div>
-      <div>
-        <div style="padding-right: 50px; padding-top: 30px; float:right;">
-          <div class="card border-warning mb-3" style="max-width: 25rem;">
-            <div class="card-header">Search up some recommended songs!</div>
-            <div class="card-body">
-              <p class="card-text">
-                <p class="text-success">We think you'd enjoy these songs:</p>
-              </p>
-              <div id="container">
-                <header>
-                    <h1>Search <span>Vids</span></h1>
-                    <p>Search all YouTube Videos</p>
-                </header>
-                <section>
-                    <form id="search-form" name="search-form" onsubmit="return search()">
-                        <div class="fieldcontainer">
-                            <input type="search" id="query" class="search-field" placeholder="Search YouTube">
-                            <input type="submit" name="search-btn" id="search-btn" value="">
-                        </div>
-                    </form>
+    <!-- YouTube Search Component -->
+    <div style="padding-left: 20px; display: inline-block; width: 700px;">
+      <div class="card border-warning mb-3" style="max-width: 100rem;">
+        <div class="card-header">Search up some recommended songs!</div>
+        <div class="card-body">
+          <div id="container">
+            <header>
+                <h1><span>YouTube</span></h1>
+            </header>
+            <section>
+                <form id="search-form" name="search-form" target="_blank" onsubmit="search()">
+                    <div class="fieldcontainer">
+                        <input type="search" id="query" class="search-field" placeholder="Search YouTube">
+                        <input type="submit" name="search-btn" id="search-btn" value="">
+                    </div>
+                </form>
 
-                    <ul id="results"></ul>
-                    <div id="buttons"></div>
-                </section>
-                <footer>Copyright, &copy; 2015</footer>
-            </div>
-            </div>
-          </div>
-         </div>
-       </div>
-    <div style="padding-bottom: 30px; padding-left: 50px; width: 450px;">
-      <a href={{ url_for('index') }}>
-	      <button id="submitButton" type="button" class="btn btn-secondary btn-lg btn-block">
-	      		Recommend More Songs
-	      </button>
- 	    </a>
-    </div>
+                <ul id="results"></ul>
+                <div id="buttons"></div>
+            </section>
+            <footer>Copyright, &copy; 2015</footer>
+        </div>
+        </div>
+      </div>
+     </div>
   </a>
   <!-- scripts -->
   <script>
@@ -343,6 +338,11 @@
 
       return btnoutput;
   }
+
+function addfunc(){
+  document.getElementById("search-form").onsubmit = search;
+}
+
   </script>
 
   <!-- Bootstrap core JavaScript -->
