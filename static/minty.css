@@ -99,6 +99,7 @@ p {
   margin-bottom: 1rem;
 }
 
+
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
@@ -179,7 +180,7 @@ a {
 
 a:hover {
   color: #4aa48a;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not([href]):not([tabindex]) {
