@@ -80,8 +80,8 @@
         <div class="card-header">Entity-Relationship Diagram</div>
           <div class="card-body">
             <p>
-              <b>Entity Set: </b> song, artist, tags <br>
-              <b>Relationship Set: </b> artist-tag, similar (artist-artist), song-artist
+              <b>Entity Set: </b> song, artist, tag <br>
+              <b>Relationship Set: </b> applies (tag-artist), similar_to (artist-artist), sings (artist-song)
             </p>
           </div>
         </div>
@@ -92,7 +92,7 @@
           <div class="card-body">
              <p>
               <b>artist: </b> <u>id</u>, name, familiarity, hotness <br>
-              <b>song: </b> <u>track_id</u>, title, release (album name), duration, year <br>
+              <b>song: </b> <u>id</u>, title, release (album name), duration, year <br>
               <b>tag: </b> <u>id</u>, tag <br>
               <b>applies: </b> <u>artist_id</u>, <u>tag_id</u> <br>
               <b>sings: </b> <u>track_id</u>, <u>artist_id</u> <br>
